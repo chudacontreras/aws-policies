@@ -1,0 +1,48 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "iam:DeactivateMFADevice",
+            "Resource": [
+                "arn:aws:iam::*:user/user-name@dominio.com",
+                "arn:aws:iam::*:mfa/user-name@dominio.com"
+            ],
+            "Condition": {
+                "Bool": {
+                    "aws:MultiFactorAuthPresent": "true"
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "iam:DeleteVirtualMFADevice",
+                "iam:EnableMFADevice",
+                "iam:ResyncMFADevice",
+                "iam:CreateVirtualMFADevice"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:user/user-name@dominio.com",
+                "arn:aws:iam::*:mfa/user-name@dominio.com"
+            ]
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": "iam:ListMFADevices",
+            "Resource": "arn:aws:iam::*:user/user-name@dominio.com"
+        },
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListUsers",
+                "iam:ListVirtualMFADevices"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
